@@ -1,0 +1,36 @@
+<div class="container">
+  <form action="#" id="form-login" #loginForm="ngForm"  class="mt-4" method="POST" role="form" (ngSubmit)="logUser()">
+      <legend>Bienvenido a GomuComics</legend>
+
+      <div class="mb-3">
+        <label for="correo">Nombre</label>
+        <input type="text" [(ngModel)]="loginUser.nombre" class="form-control" name="nombre" id="nombre"
+           placeholder="nombre" placeholder="Nombre" required #nameModel="ngModel"
+           [ngClass]="validClasses(nameModel, 'is-valid', 'is-invalid')"
+          />
+        <div class="invalid-feedback">
+          Error nombre
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="password">Password:</label>
+        <input type="password"  [(ngModel)]="loginUser.password" class="form-control" name="password" id="password"
+           placeholder="Password" required  #passwordModel="ngModel"
+          [ngClass]="validClasses(passwordModel, 'is-valid', 'is-invalid')"
+         />
+        <div class="invalid-feedback">Password es requerido</div>
+      </div>
+      <p class="text-danger" id="errorInfo"></p>
+      <a class="btn btn-secondary" [routerLink]="['/auth/register']" role="button">Create account</a>
+
+      <button type="submit" class="btn btn-primary ms-2"  [disabled]="loginForm.invalid">
+        Login
+      </button>
+
+      <hr />
+      <div  class="text-danger" *ngIf="existe" > <h4> Usuario o Contraseña incorrectos </h4>  </div>
+    </form>
+
+
+
+  </div>
