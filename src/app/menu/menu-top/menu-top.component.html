@@ -1,37 +1,38 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <div class="container-fluid" >
-      <a class="col-1" href="" > <img src="../../../assets/Logo.png"  class="rounded float-left col-12" > </a>
+    <div class="container-fluid"  *ngIf="logged" >
+      <a class="col-1"  class="col-1" [routerLink]="['/comics']" > <img src="../../../assets/Logo.png"  class="rounded float-left col-12" > </a>
       <ul class="navbar-nav me-auto mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link ">Home</a>
+          <a class="nav-link " [routerLink]="['/comics']" [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">Perfil</a>
+          <a class="nav-link" [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/users/me']">Perfil</a>
         </li>
         <li class="nav-item">
-          <a  class="nav-link" >Logout</a>
+          <a  class="nav-link" (click)="logout()" >Logout</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">Subir Comic</a>
+          <a class="nav-link" [routerLinkActive]="['active']"
+          [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/comics/subir']">Subir Comic</a>
         </li>
       </ul>
     </div>
 
-    <!--
-
-      <div class="container-fluid" >
-      <a class="navbar-brand" >Events manager</a>
+    <div class="container-fluid" *ngIf="!logged">
+      <a class="navbar-brand" class="col-1" [routerLink]="['/comics']"><img src="../../../assets/Logo.png"  class="rounded float-left col-12" ></a>
       <ul class="navbar-nav me-auto mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" >Login</a>
+          <a class="nav-link" [routerLink]="['/auth/login']" [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{ exact: true }">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link">Register</a>
+          <a class="nav-link" [routerLink]="['/auth/register']" [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{ exact: true }">Register</a>
         </li>
       </ul>
     </div>
-
-     -->
 
   </nav>
 

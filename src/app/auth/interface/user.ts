@@ -1,3 +1,10 @@
+export interface User {
+  id?: number;
+  nombre: string;
+  password: string;
+  imagen?: string;
+}
+
 export interface UserLogin {
   nombre: string;
   password: string;
@@ -6,7 +13,7 @@ export interface UserLogin {
 export interface regiUser {
   nombre: string;
   password: string;
-
+  imagen: string;
 }
 
 export interface Response {
@@ -14,7 +21,10 @@ export interface Response {
   response: string;
 }
 
-
 export interface TokenResponse {
-  accessToken: string;
+  token: string;
+}
+
+export interface UserResponse {
+  user: User;
 }

@@ -1,24 +1,25 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { regiUser } from '../interface/user';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { regiUser, User } from '../interface/user';
 import { ApiService } from '../../servicios/api/api.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm, NgModel } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Binary } from '@angular/compiler';
-
 @Component({
-  selector: 'app-auth-register',
-  templateUrl: './auth-register.component.html',
-  styleUrls: ['./auth-register.component.css'],
+  selector: 'app-editar-perfil',
+  templateUrl: './editar-perfil.component.html',
+  styleUrls: ['./editar-perfil.component.css'],
 })
-export class AuthRegisterComponent implements OnInit {
+export class EditarPerfilComponent implements OnInit {
   @ViewChild('RegiForm') RegiForm!: NgForm;
+  @Input() user!: User;
 
   public previsualizacion: string = '';
   constructor(
     private readonly authsService: ApiService,
     private readonly router: Router,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private readonly route: ActivatedRoute
   ) {}
   regiUser!: regiUser;
   password2: string = '';
@@ -26,12 +27,15 @@ export class AuthRegisterComponent implements OnInit {
   url = '../../../assets/perfil/Logo.png';
 
   ngOnInit(): void {
+
+    this.user = this.route.snapshot.data['profile'];
     this.resetForm();
+    this.user.imagen = 'data:image/png;base64, ' + this.user.imagen;
   }
 
   resetForm(): void {
     this.regiUser = {
-      nombre: '',
+      nombre: this.user.nombre,
       password: '',
       imagen: '',
     };
@@ -46,11 +50,10 @@ export class AuthRegisterComponent implements OnInit {
     });
   }
 
-  regisUser(): void {
- //   this.regiUser.imagen = "hola.jpg";
-   this.authsService.register(this.regiUser).subscribe({
+  changUser(): void {
+    this.authsService.changeUser(this.regiUser).subscribe({
       next: () => {
-        this.router.navigate(['/auth']);
+        this.authsService.logout();
       },
       error: (error) => console.error(error),
     });

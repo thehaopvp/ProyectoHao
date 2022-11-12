@@ -1,26 +1,27 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { regiUser } from '../interface/user';
-import { ApiService } from '../../servicios/api/api.service';
+import { ComicServicesService } from 'src/app/servicios/comicServices/comic-services.service';
 import { Router } from '@angular/router';
 import { NgForm, NgModel } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Binary } from '@angular/compiler';
+import { regiUser } from 'src/app/auth/interface/user';
+import { comics } from '../ComicInterface/comics-interface';
 
 @Component({
-  selector: 'app-auth-register',
-  templateUrl: './auth-register.component.html',
-  styleUrls: ['./auth-register.component.css'],
+  selector: 'app-subir-comics',
+  templateUrl: './subir-comics.component.html',
+  styleUrls: ['./subir-comics.component.css'],
 })
-export class AuthRegisterComponent implements OnInit {
-  @ViewChild('RegiForm') RegiForm!: NgForm;
+export class SubirComicsComponent implements OnInit {
+  @ViewChild('ComicForm') ComicForm!: NgForm;
 
   public previsualizacion: string = '';
   constructor(
-    private readonly authsService: ApiService,
+    private readonly comicServices: ComicServicesService,
     private readonly router: Router,
     private sanitizer: DomSanitizer
   ) {}
-  regiUser!: regiUser;
+  comics!: comics;
   password2: string = '';
 
   url = '../../../assets/perfil/Logo.png';
@@ -30,27 +31,26 @@ export class AuthRegisterComponent implements OnInit {
   }
 
   resetForm(): void {
-    this.regiUser = {
-      nombre: '',
-      password: '',
-      imagen: '',
-    };
+    this.comics = {
+    titulo: "",
+    portada: "",
+    descripcion: "",
+    capitulos:"",
+    }
   }
 
   capturarFile(event: any): any {
     const archivoCapturado = event.target.files[0];
     this.extraerBase64(archivoCapturado).then((imagenes: any) => {
       this.previsualizacion = imagenes.base;
-      this.regiUser.imagen = imagenes.base;
-      console.log(this.regiUser.imagen);
+      this.comics.portada = imagenes.base;
     });
   }
 
-  regisUser(): void {
- //   this.regiUser.imagen = "hola.jpg";
-   this.authsService.register(this.regiUser).subscribe({
+  subirComic(): void {
+    this.comicServices.subirComics(this.comics).subscribe({
       next: () => {
-        this.router.navigate(['/auth']);
+        this.router.navigate(['/comics']);
       },
       error: (error) => console.error(error),
     });

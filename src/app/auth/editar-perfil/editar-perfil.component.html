@@ -1,0 +1,42 @@
+<div class="container">
+  <form action="#" #RegiForm="ngForm"   id="form-register" class="mt-4" method="POST" (ngSubmit)="changUser()" role="form">
+    <legend>Editar Perfil</legend>
+
+    <div class="mb-3">
+      <label for="nombre">Editar Nombre:</label>
+      <input type="text" [(ngModel)]="regiUser.nombre" value="{{user.nombre}}"  #nameModel="ngModel"  class="form-control" id="nombre" name="nombreUser" placeholder="Nombre"  [ngClass]="validClasses(nameModel, 'is-valid', 'is-invalid')" required />
+      <div class="invalid-feedback">Se requiere nombre</div>
+    </div>
+    <div class="mb-3">
+      <label for="imagen"> Editar Imagen:</label>
+      <input  (change)="capturarFile($event)" type="file"  required [(ngModel)]="regiUser.imagen"   #imagenModel="ngModel"   [ngClass]="validClasses(imagenModel, 'is-valid', 'is-invalid')"  class="form-control" id="imagen" name="imagen"  />
+      <div class="invalid-feedback">Imagen Falla </div>
+    </div>
+    <div *ngIf="previsualizacion"  >
+      <img [src]="previsualizacion" width="400px" >
+    </div>
+    <div class="mb-3">
+      <label for="password">Editar Contraseña:</label>
+      <input type="password" required   [(ngModel)]="regiUser.password"  #passwordModel="ngModel"   [ngClass]="validClasses(passwordModel, 'is-valid', 'is-invalid')" class="form-control" id="password" name="password" placeholder="Password"  />
+      <div class="invalid-feedback">Se requiere Contraseña</div>
+    </div>
+    <div class="mb-3">
+      <label for="correo"> Repite Contraseña:</label>
+      <input type="password" class="form-control" required  [appPasswordvalidator]="regiUser.password"  [(ngModel)]="password2" #passwordModel2="ngModel"    [ngClass]="validClasses(passwordModel2, 'is-valid', 'is-invalid')"   id="password2" name="password2" placeholder="Password"
+      />
+      <div class="invalid-feedback"> Contraseña  no coincide </div>
+     <div  class="valid-feedback"> Password correctos</div>
+    </div>
+
+
+
+
+    <img src="" alt="" id="imgPreview" class="img-thumbnail d-none" />
+    <p class="text-danger" id="errorInfo"></p>
+    <a class="btn btn-secondary" [routerLink]="['/comics']" role="button">Volver</a>
+    <button type="submit" [disabled]="RegiForm.invalid" class="btn btn-primary ms-2">
+      Crear Cuenta
+    </button>
+  </form>
+</div>
+

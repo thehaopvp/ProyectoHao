@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,Input} from '@angular/core';
+import { Router } from '@angular/router';
+
+import { UserLogin } from '../../auth/interface/user';
+import { ApiService } from '../../servicios/api/api.service';
 
 @Component({
   selector: 'app-menu-top',
@@ -6,10 +10,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu-top.component.css']
 })
 export class MenuTopComponent implements OnInit {
-
-  constructor() { }
+  @Input() user!: UserLogin;
+  logged!: boolean;
 
   ngOnInit(): void {
+    this.apiService.loginChange$.subscribe(e=> (this.logged = e));
+
+  }
+  constructor( private readonly apiService:  ApiService  , private readonly router: Router)  { }
+
+  logout():void{
+    this.apiService.logout();
+    this.router.navigate(['/auth']);
   }
 
 }

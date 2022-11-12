@@ -6,10 +6,7 @@ import { MenuModule } from './menu/menu.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BaseUrlInterceptor } from 'src/interceptor/base-url.interceptor';
-
-
-
-
+import { InterceptorInterceptor } from './servicios/interceptor/interceptor.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +18,6 @@ import { BaseUrlInterceptor } from 'src/interceptor/base-url.interceptor';
     ReactiveFormsModule,
     FormsModule,
 
-
   ],
   providers: [
     {
@@ -29,7 +25,13 @@ import { BaseUrlInterceptor } from 'src/interceptor/base-url.interceptor';
       useClass: BaseUrlInterceptor,
       multi: true,
     },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorInterceptor,
+      multi: true,
+    },
   ],
+
   bootstrap: [AppComponent],
 })
 export class AppModule {}
