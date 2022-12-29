@@ -7,7 +7,7 @@ import { UserLogin, UserResponse, User } from '../../auth/interface/user';
   providedIn: 'root'
 })
 export class UserServiceService {
-
+  me:boolean = false;
   constructor(private readonly http: HttpClient) { }
 
 

@@ -5,6 +5,7 @@ import { PerfilComponent } from './perfil/perfil/perfil.component';
 import { ProfileResolverResolver } from './resolver/profile-resolver.resolver';
 import { AuthLoginComponent } from '../auth/auth-login/auth-login.component';
 
+
 const routes: Routes = [
   {
     path: 'me',

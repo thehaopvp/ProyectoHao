@@ -19,10 +19,8 @@ export class PerfilComponent implements OnInit {
     this.user.imagen = "data:image/png;base64,\ " + this.user.imagen;
 
   }
+
    goBack():void {
     this.router.navigate(['/comics']);
   }
-}
-export class AppComponent {
-  isCollapsed = false;
 }

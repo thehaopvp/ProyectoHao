@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ComicServicesService } from 'src/app/servicios/comicServices/comic-services.service';
+import { ComicServicesService } from '../../servicios/comicServices/comic-services.service';
 import { Router } from '@angular/router';
 import { NgForm, NgModel } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Binary } from '@angular/compiler';
-import { regiUser } from 'src/app/auth/interface/user';
 import { comics } from '../ComicInterface/comics-interface';
 
 @Component({

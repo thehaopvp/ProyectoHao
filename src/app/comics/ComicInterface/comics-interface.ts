@@ -6,3 +6,10 @@ export interface comics {
   capitulos:string;
 }
 
+export interface ComicsResponse {
+  comic: comics[];
+}
+
+export interface ComicResponse {
+  comic: comics;
+}

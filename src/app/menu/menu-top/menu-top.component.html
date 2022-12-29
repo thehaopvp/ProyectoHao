@@ -4,20 +4,22 @@
       <ul class="navbar-nav me-auto mb-lg-0">
         <li class="nav-item">
           <a class="nav-link " [routerLink]="['/comics']" [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{ exact: true }">Home</a>
+          [routerLinkActiveOptions]="{ exact: true }">Comics</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/users/me']">Perfil</a>
         </li>
-        <li class="nav-item">
-          <a  class="nav-link" (click)="logout()" >Logout</a>
-        </li>
+
         <li class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/comics/subir']">Subir Comic</a>
         </li>
+
+
+
       </ul>
+      <a  class="float-left p-5 link-secondary text-decoration-none" (click)="logout()" >Logout</a>
     </div>
 
     <div class="container-fluid" *ngIf="!logged">

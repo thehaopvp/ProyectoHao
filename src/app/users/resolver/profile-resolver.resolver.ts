@@ -13,6 +13,7 @@ import { UserServiceService } from '../user-service/user-service.service';
   providedIn: 'root'
 })
 export class ProfileResolverResolver implements Resolve<User> {
+
   constructor(
     private usersService: UserServiceService,
     private router: Router

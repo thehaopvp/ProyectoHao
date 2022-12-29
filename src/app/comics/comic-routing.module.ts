@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { ComicsComponent } from './comics/comics.component';
 import { LoginGuard } from '../guards/login.guard';
 import { SubirComicsComponent } from './subir-comics/subir-comics.component';
+import { ComicResolver } from './resolver/comic.resolver';
+import { ComicDetailsComponent } from './comic-details/comic-details.component';
 
 
 
@@ -17,6 +19,14 @@ const routes: Routes = [
     path: 'subir',
    canActivate: [LoginGuard],
     component: SubirComicsComponent,
+  },
+  {
+    path: ':id',
+    canActivate: [LoginGuard],
+    component: ComicDetailsComponent,
+    resolve: {
+      comic: ComicResolver,
+    },
   },
 
   { path: '',canActivate: [LoginGuard], component: ComicsComponent },

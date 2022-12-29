@@ -1,0 +1,13 @@
+<div class="card mb-4 text-white bg-dark">
+  <h5 class="card-title text-center text-decoration-underline">{{ comic.titulo }}</h5>
+  <img class="card-img-top" src="http://localhost:8080/comics/img/{{comic.portada}}" />
+  <div class="card-body">
+
+    <p class="card-text">{{ comic.descripcion }}</p>
+
+    <p class="card-text">Capitulos: {{ comic.capitulos }}</p>
+
+
+  </div>
+  <button type="button" class="btn btn-outline-light" [routerLink]="['/comics/' + comic.id]">Ver Comic</button>
+</div>

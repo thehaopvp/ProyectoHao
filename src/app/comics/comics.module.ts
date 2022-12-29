@@ -5,6 +5,8 @@ import { ValidatorModule } from "../validator/validator.module";
 import { ComicRoutingModule } from "./comic-routing.module";
 import { ComicsComponent } from "./comics/comics.component";
 import { SubirComicsComponent } from "./subir-comics/subir-comics.component";
+import { ComicItemComponent } from './comic-item/comic-item.component';
+import { ComicDetailsComponent } from './comic-details/comic-details.component';
 
 
 
@@ -13,7 +15,9 @@ import { SubirComicsComponent } from "./subir-comics/subir-comics.component";
 @NgModule({
   declarations: [
     ComicsComponent,
-    SubirComicsComponent
+    SubirComicsComponent,
+    ComicItemComponent,
+    ComicDetailsComponent
   ],
   imports: [
     CommonModule,

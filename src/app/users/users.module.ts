@@ -6,9 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { PerfilComponent } from './perfil/perfil/perfil.component';
 
 
+
 @NgModule({
   declarations: [
-    PerfilComponent
+    PerfilComponent,
+
   ],
   imports: [CommonModule, UsersRoutingModule, FormsModule],
 })
