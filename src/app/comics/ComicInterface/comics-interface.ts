@@ -3,7 +3,7 @@ export interface comics {
   titulo: string;
   portada?: string;
   descripcion: string;
-  capitulos:string;
+
 }
 
 export interface ComicsResponse {

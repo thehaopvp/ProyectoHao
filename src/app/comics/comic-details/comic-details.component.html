@@ -1,19 +1,135 @@
-<p>{{ comic.titulo }}</p>
-<p>{{ comic.descripcion }}</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap Resume</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body class=""></body>
+</html>
 
-<img
-  [src]="comic.portada"
-  alt="Generic placeholder image"
-  class="img-fluid img-thumbnail mt-4 mb-2"
-  style="width: 150px; z-index: 1"
-/>
+<header class="bg-gradient text-white py-5">
+  <div class="container">
+    <div class="row">
+      <div class="bg-dark pt-2">
+        <div class=" text-center text-decoration-underline ">
+          <h1>{{ comic.titulo }}</h1>
+          <img
+            [src]="comic.portada"
+            alt="Generic placeholder image"
+            class="rounded mx-auto d-block mt-4 border "
+            style=""
+          />
+        </div>
+        <div class="col-md-12 pt-2">
+          <h5> Descripción: </h5>
+          <p class="border-top pt-3 ">
+            {{ comic.descripcion }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<button
-  type="button"
-  class="btn btn-outline-primary"
-  data-mdb-ripple-color="dark"
-  style="z-index: 1"
-  (click)="goBack()"
->
-  Volver
-</button>
+  <div class="container">
+    <div class="row ">
+      <div class="bg-dark bg-gradient text-white py-5 " id="chapters-list">
+        <h3 ><strong >Capítulos :</strong></h3>
+
+        <div class="chapter-list-wrapper border-top pt-2">
+          <ul class="list-unstyled">
+            <li class="pl-1 d-flex">
+              <a
+                href=""
+                class="text-overflow link-light text-decoration-none"
+                title="377: "
+              >
+                Capítulo 377
+                <small>: tomermenta d eflores </small>
+              </a>
+            </li>
+            <li class="pl-1 d-flex">
+              <a
+                href=""
+                class="text-overflow link-light text-decoration-none"
+                title="377: "
+              >
+                Capítulo 377
+                <small>: tomermenta d eflores </small>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <form
+        action="#"
+        #ComicForm="ngForm"
+        id="form-register"
+        class="mt-4"
+        method="POST"
+        (ngSubmit)="subirCapitulos()"
+        role="form"
+      >
+        <div class="mb-3">
+          <label for="nombre">Titulo Capitulos:</label>
+          <input
+            type="text"
+            [(ngModel)]="capitulos.titulo"
+            #nameModel="ngModel"
+            class="form-control"
+            id="titulo"
+            name="tituloUser"
+            placeholder="Titulo"
+            [ngClass]="validClasses(nameModel, 'is-valid', 'is-invalid')"
+            required
+          />
+          <div class="invalid-feedback">Se requiere titulo</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="`portada"> Carpeta de imagenes:</label>
+          <input
+            (change)="capturarFile($event)"
+            required
+            [(ngModel)]="capitulos.imagenes"
+            #portadaModel="ngModel"
+            [ngClass]="validClasses(portadaModel, 'is-valid', 'is-invalid')"
+            type="file"
+            required
+            class="form-control"
+            id="portada"
+            name="portada"
+          />
+          <div class="invalid-feedback">Carpetas de imagenes Falla</div>
+        </div>
+
+        <a class="btn btn-secondary" [routerLink]="['/comics']" role="button"
+          >Volver</a
+        >
+
+        <button
+          type="submit"
+          [disabled]="ComicForm.invalid"
+          class="btn btn-primary ms-2 "
+        >
+          Crear Cuenta
+        </button>
+
+
+      </form>
+    </div>
+s
+
+  </div>
+
+</header>
+

@@ -34,7 +34,7 @@ export class SubirComicsComponent implements OnInit {
     titulo: "",
     portada: "",
     descripcion: "",
-    capitulos:"",
+
     }
   }
 
@@ -62,7 +62,7 @@ export class SubirComicsComponent implements OnInit {
     };
   }
 
-  extraerBase64 = async ($event: any) =>
+ extraerBase64 = async ($event: any) =>
     new Promise((resolve, reject) => {
       try {
         const unsafeImg = window.URL.createObjectURL($event);
@@ -82,6 +82,6 @@ export class SubirComicsComponent implements OnInit {
       } catch (e) {
         return null;
       }
-      return 'pepe';
+      return null;
     });
 }
