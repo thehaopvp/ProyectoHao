@@ -38,6 +38,7 @@ export class EditarPerfilComponent implements OnInit {
       nombre: this.user.nombre,
       password: '',
       imagen: '',
+      role:""
     };
   }
 

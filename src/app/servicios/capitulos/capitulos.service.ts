@@ -19,16 +19,25 @@ export class CapitulosService {
     return this.http.post<void>(`capitulos`, capitulos);
   }
 
-  getAllCapitulos(): Observable<capitulos[]> {
-    return this.http.get<capitulosResponse>('capitulos').pipe(
-      map(resp => resp.capitulos)
+  getAllCapitulos(id:number): Observable<capitulos[]> {
+    return this.http.get<capitulosResponse>(`capitulos/list/${id}`).pipe(
+      map(resp => resp.capitulo)
     );
   }
 
   getCapitulos(id:number):Observable<capitulos>{
     return this.http.get<capituloResponse>(`capitulos/${id}`).pipe(
-      map(Com => Com.capitulos)
+      map(Com => Com.capitulo)
     );
+  }
+
+  siguiente(id:number):Observable<capitulos>{
+    return this.http.get<any>(`capitulos/siguiente/${id}`)
+    ;
+  }
+
+  anterior(id:number):Observable<capitulos>{
+    return this.http.get<any>(`capitulos/anterior/${id}`)
   }
 
 }

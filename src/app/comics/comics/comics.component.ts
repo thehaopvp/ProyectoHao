@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ComicsComponent implements OnInit {
   comics: comics[] = [];
+  search:string= '';
   constructor(private comicServicesService: ComicServicesService , private route : ActivatedRoute ) { }
 
   ngOnInit(): void {

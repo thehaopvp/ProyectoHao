@@ -6,6 +6,9 @@ import { LoginGuard } from '../guards/login.guard';
 import { SubirComicsComponent } from './subir-comics/subir-comics.component';
 import { ComicResolver } from './resolver/comic.resolver';
 import { ComicDetailsComponent } from './comic-details/comic-details.component';
+import { CapituloDetailsComponent } from './capitulo-details/capitulo-details.component';
+import { CapitulosResolver } from './resolver/capitulos.resolver';
+import { CargarPaginaComponent } from './cargar-pagina/cargar-pagina.component';
 
 
 
@@ -14,6 +17,11 @@ const routes: Routes = [
     path: '',
    canActivate: [LoginGuard],
     component: ComicsComponent,
+  },
+  {
+    path: 'cargarPagina',
+   canActivate: [LoginGuard],
+    component: CargarPaginaComponent,
   },
   {
     path: 'subir',
@@ -28,6 +36,15 @@ const routes: Routes = [
       comic: ComicResolver,
     },
   },
+  {
+    path: 'capitulo/:id',
+   canActivate: [LoginGuard],
+    component: CapituloDetailsComponent,
+    resolve: {
+      capitulo: CapitulosResolver,
+    },
+  },
+
 
   { path: '',canActivate: [LoginGuard], component: ComicsComponent },
   { path: '**', canActivate: [LoginGuard], component: ComicsComponent },

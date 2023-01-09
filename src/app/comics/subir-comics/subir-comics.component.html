@@ -8,7 +8,7 @@
     (ngSubmit)="subirComic()"
     role="form"
   >
-    <legend>Crea una cuenta</legend>
+    <legend>Crear un comic</legend>
 
     <div class="mb-3">
       <label for="nombre">Titulo Comic:</label>
@@ -23,7 +23,7 @@
         [ngClass]="validClasses(nameModel, 'is-valid', 'is-invalid')"
         required
       />
-      <div class="invalid-feedback">Se requiere nombre</div>
+      <div class="invalid-feedback">Se requiere titulo</div>
     </div>
     <div class="mb-3">
       <label for="`portada"> Imagen Portada:</label>
@@ -40,6 +40,7 @@
         name="portada"
       />
       <div class="invalid-feedback">Imagen Falla</div>
+      <div class="valid-feedback">Imagen guardada</div>
     </div>
     <div *ngIf="previsualizacion">
       <img [src]="previsualizacion" width="400px" />
@@ -57,7 +58,7 @@
         name="descripcion"
         placeholder="Descripción"
       />
-      <div class="invalid-feedback">Se requiere Contraseña</div>
+      <div class="invalid-feedback">Se requiere descripción</div>
     </div>
 
 
@@ -73,7 +74,7 @@
       [disabled]="ComicForm.invalid"
       class="btn btn-primary ms-2"
     >
-      Crear Cuenta
+      Crear comic
     </button>
   </form>
 </div>

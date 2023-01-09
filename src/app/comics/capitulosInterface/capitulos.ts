@@ -6,9 +6,9 @@ export interface capitulos {
 }
 
 export interface capitulosResponse {
-  capitulos: capitulos[];
+  capitulo: capitulos[];
 }
 
 export interface capituloResponse {
-  capitulos: capitulos;
+  capitulo: capitulos;
 }

@@ -3,6 +3,7 @@ export interface User {
   nombre: string;
   password: string;
   imagen?: string;
+  role?:string;
 }
 
 export interface UserLogin {
@@ -14,6 +15,7 @@ export interface regiUser {
   nombre: string;
   password: string;
   imagen: string;
+  role: string;
 }
 
 export interface Response {

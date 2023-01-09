@@ -11,7 +11,7 @@
           [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/users/me']">Perfil</a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="admin == true">
           <a class="nav-link" [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{ exact: true }" [routerLink]="['/comics/subir']">Subir Comic</a>
         </li>

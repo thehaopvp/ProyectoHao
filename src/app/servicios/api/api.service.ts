@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { UserLogin, Response, User, TokenResponse } from '../../auth/interface/user';
+import {
+  UserLogin,
+  Response,
+  User,
+  TokenResponse,
+} from '../../auth/interface/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { catchError, EMPTY, Observable, of, ReplaySubject } from 'rxjs';
@@ -10,6 +15,7 @@ import { catchError, EMPTY, Observable, of, ReplaySubject } from 'rxjs';
 export class ApiService {
   logged: boolean = false;
   loginChange$ = new ReplaySubject<boolean>(1);
+  admin$ = new ReplaySubject<boolean>(1);
   constructor(
     private readonly http: HttpClient,
 
@@ -23,7 +29,7 @@ export class ApiService {
         localStorage.setItem('token', value.token);
         this.loginChange$.next(true);
         this.logged = true;
-        console.log(this.logged);
+        this.checkAdmin();
         this.router.navigate(['/comics']);
       });
 
@@ -41,6 +47,14 @@ export class ApiService {
   checktoken(): Observable<void> {
     return this.http.get<void>(`/checktoken`);
   }
+
+  checkAdmin(): void {
+     this.http.get<any>(`user/admin`).subscribe({
+      next:  admin => this.admin$.next(admin.admin),
+      error: admin => console.error(admin),
+    });
+  }
+
 
   logout(): void {
     localStorage.removeItem('token');

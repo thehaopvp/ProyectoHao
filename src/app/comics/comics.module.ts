@@ -7,6 +7,11 @@ import { ComicsComponent } from "./comics/comics.component";
 import { SubirComicsComponent } from "./subir-comics/subir-comics.component";
 import { ComicItemComponent } from './comic-item/comic-item.component';
 import { ComicDetailsComponent } from './comic-details/comic-details.component';
+import { ComicPipe } from "./comicpipes/comic.pipe";
+import { CapituloItemComponent } from './capitulo-item/capitulo-item.component';
+import { CapituloDetailsComponent } from './capitulo-details/capitulo-details.component';
+import { CargarPaginaComponent } from './cargar-pagina/cargar-pagina.component';
+
 
 
 
@@ -17,7 +22,11 @@ import { ComicDetailsComponent } from './comic-details/comic-details.component';
     ComicsComponent,
     SubirComicsComponent,
     ComicItemComponent,
-    ComicDetailsComponent
+    ComicDetailsComponent,
+    ComicPipe,
+    CapituloItemComponent,
+    CapituloDetailsComponent,
+    CargarPaginaComponent
   ],
   imports: [
     CommonModule,

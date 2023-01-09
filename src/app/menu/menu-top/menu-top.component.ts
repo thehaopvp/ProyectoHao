@@ -12,9 +12,11 @@ import { ApiService } from '../../servicios/api/api.service';
 export class MenuTopComponent implements OnInit {
   @Input() user!: UserLogin;
   logged!: boolean;
+  admin!: boolean;
 
   ngOnInit(): void {
     this.apiService.loginChange$.subscribe(e=> (this.logged = e));
+    this.apiService.admin$.subscribe(e=> (this.admin = e));
 
   }
   constructor( private readonly apiService:  ApiService  , private readonly router: Router)  { }

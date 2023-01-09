@@ -34,6 +34,7 @@ export class AuthRegisterComponent implements OnInit {
       nombre: '',
       password: '',
       imagen: '',
+      role: 'USER'
     };
   }
 
