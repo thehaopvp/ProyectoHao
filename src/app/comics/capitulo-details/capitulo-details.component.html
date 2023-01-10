@@ -1,5 +1,5 @@
 <a class="btn btn-primary mb-3" [routerLink]="['/comics/' + capitulo.id_comic]" role="button">Volver</a>
-<h1 class="text-center"> {{ capitulo.titulo }}</h1>
+<h1 class="text-center text-decoration-underline"> {{ capitulo.titulo }}</h1>
 <div class="container ">
   <div class="row">
     <div class="col-11">
@@ -34,5 +34,26 @@
       oncontextmenu="return false;"
       data-was-processed="true"
     />
+  </div>
+</div>
+
+<div class="container pb-5 pt-3 ">
+  <div class="row">
+    <div class="col-11">
+      <a
+        class="btn btn btn btn-warning"
+        (click)="anterior(capitulo.id!)"
+        role="button"
+        >Anterior</a
+      >
+    </div>
+    <div class="col-1">
+      <a
+        class="btn btn btn btn-warning "
+        (click)="siguiente(capitulo.id!)"
+        role="button"
+        >Siguiente</a
+      >
+    </div>
   </div>
 </div>

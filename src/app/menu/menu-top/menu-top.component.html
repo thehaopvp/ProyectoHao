@@ -3,6 +3,7 @@
       <a class="col-1"  class="col-1" [routerLink]="['/comics']" > <img src="../../../assets/Logo.png"  class="rounded float-left col-12" > </a>
       <ul class="navbar-nav me-auto mb-lg-0">
         <li class="nav-item">
+
           <a class="nav-link " [routerLink]="['/comics']" [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{ exact: true }">Comics</a>
         </li>
@@ -19,7 +20,12 @@
 
 
       </ul>
+
+
       <a  class="float-left p-5 link-secondary text-decoration-none" (click)="logout()" >Logout</a>
+
+
+
     </div>
 
     <div class="container-fluid" *ngIf="!logged">

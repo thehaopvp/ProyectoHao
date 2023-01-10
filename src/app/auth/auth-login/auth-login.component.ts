@@ -29,7 +29,6 @@ export class AuthLoginComponent implements OnInit {
   }
 
   logUser(): void {
-    console.log(this.loginUser);
     this.authsService.login(this.loginUser).subscribe({
       next: () => {
         this.router.navigate(['/comics']);

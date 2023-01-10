@@ -43,7 +43,6 @@ export class AuthRegisterComponent implements OnInit {
     this.extraerBase64(archivoCapturado).then((imagenes: any) => {
       this.previsualizacion = imagenes.base;
       this.regiUser.imagen = imagenes.base;
-      console.log(this.regiUser.imagen);
     });
   }
 

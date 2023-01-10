@@ -1,6 +1,6 @@
 <div class="card mb-4 text-white bg-dark">
   <h5 class="card-title text-center text-decoration-underline">{{ comic.titulo }}</h5>
-  <img class="card-img-top" src="http://localhost:8080/comics/img/{{comic.portada}}" />
+  <img class="card-img-top " style="cursor:pointer;" [routerLink]="['/comics/' + comic.id]" src="http://localhost:8080/comics/img/{{comic.portada}}" />
   <div class="card-body">
 
     <p class="card-text">Descripción: {{ comic.descripcion }}</p>

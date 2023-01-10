@@ -49,11 +49,15 @@ export class ComicDetailsComponent implements OnInit {
     };
   }
 
+  redirectTo(uri:string){
+    this.router.navigateByUrl('/comics/cargarPagina', {skipLocationChange: true}).then(()=>
+    this.router.navigate([uri]));
+ }
+
   subirCapitulos(): void {
     this.capitulosService.subirCapitulos(this.capitulo).subscribe({
       next: () => {
-        this.router.navigate(['/comics']);
-        console.log(this.comic.id);
+        this.redirectTo('/comics/'+ this.capitulo.id_comic );
       },
       error: (error) => console.error(error),
     });
@@ -69,7 +73,6 @@ export class ComicDetailsComponent implements OnInit {
   capturarFile(event: any): any {
     const archivoCapturado = event.target.files[0];
     this.extraerBase64(archivoCapturado).then((imagenes: any) => {
-      console.log(imagenes.base);
       this.capitulo.imagenes = imagenes.base;
     });
   }

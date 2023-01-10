@@ -10,7 +10,6 @@ export class PasswordvalidatorDirective {
   @Input() appPasswordvalidator!: string;
 
   validate(control: AbstractControl): ValidationErrors | null {
-    console.log(this.appPasswordvalidator, control.value);
     if (this.appPasswordvalidator !== '' && this.appPasswordvalidator !== control.value) {
       return { appPasswordvalidator:true};
     }
