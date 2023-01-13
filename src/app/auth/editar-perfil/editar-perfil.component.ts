@@ -35,10 +35,11 @@ export class EditarPerfilComponent implements OnInit {
 
   resetForm(): void {
     this.regiUser = {
+      id: this.user.id,
       nombre: this.user.nombre,
       password: '',
       imagen: '',
-      role:""
+      role:this.user.role,
     };
   }
 

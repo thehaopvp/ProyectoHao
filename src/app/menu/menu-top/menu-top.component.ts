@@ -14,10 +14,10 @@ export class MenuTopComponent implements OnInit {
   logged!: boolean;
   admin!: boolean;
 
+
   ngOnInit(): void {
     this.apiService.loginChange$.subscribe(e=> (this.logged = e));
     this.apiService.admin$.subscribe(e=> (this.admin = e));
-
   }
   constructor( private readonly apiService:  ApiService  , private readonly router: Router)  { }
 

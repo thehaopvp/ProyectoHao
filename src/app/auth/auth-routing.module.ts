@@ -20,7 +20,7 @@ const routes: Routes = [
 
   },
   {
-    path: 'edit',
+    path: 'edit/:id',
     canActivate: [LoginGuard],
     component: EditarPerfilComponent,
     resolve: {

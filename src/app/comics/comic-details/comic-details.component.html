@@ -18,18 +18,18 @@
   <div class="container">
     <div class="row">
       <div class="bg-dark pt-2">
-        <div class=" text-center text-decoration-underline ">
+        <div class="text-center text-decoration-underline">
           <h1>{{ comic.titulo }}</h1>
           <img
             [src]="comic.portada"
             alt="Generic placeholder image"
-            class="rounded mx-auto d-block mt-4 border "
-            style="width: 60% ; height: 60%;"
+            class="rounded mx-auto d-block mt-4 border"
+            style="width: 60%; height: 60%"
           />
         </div>
         <div class="col-md-12 pt-2">
-          <h5> Descripción: </h5>
-          <p class="border-top pt-3 ">
+          <h5>Descripción:</h5>
+          <p class="border-top pt-3">
             {{ comic.descripcion }}
           </p>
         </div>
@@ -38,18 +38,23 @@
   </div>
 
   <div class="container">
-    <div class="row ">
-      <div class="bg-dark bg-gradient text-white py-5 " id="chapters-list">
-        <h3 ><strong >Capítulos : </strong></h3>
+    <div class="row">
+      <div
+        class="bg-dark bg-gradient text-white py-5 border-top border-white"
+        id="chapters-list"
+      >
+        <h3><strong>Capítulos : </strong></h3>
 
-        <app-capitulo-item [capitulo]="capitulo" class="col" *ngFor="let capitulo of capitulos "> </app-capitulo-item>
-
+        <app-capitulo-item
+          [capitulo]="capitulo"
+          class="col text-decoration-underline"
+          *ngFor="let capitulo of capitulos"
+        >
+        </app-capitulo-item>
       </div>
     </div>
 
-    <div class="container"  *ngIf="admin == true">
-
-
+    <div class="container" *ngIf="admin == true">
       <form
         action="#"
         #CapituloForm="ngForm"
@@ -59,9 +64,7 @@
         (ngSubmit)="subirCapitulos()"
         role="form"
       >
-
         <div class="mb-3 text-dark">
-
           <label for="nombre">Titulo del capitulo:</label>
 
           <input
@@ -76,7 +79,6 @@
             required
           />
           <div class="invalid-feedback">Se requiere titulo</div>
-
         </div>
 
         <div class="mb-3 text-dark">
@@ -104,17 +106,100 @@
         <button
           type="submit"
           [disabled]="CapituloForm.invalid"
-          class="btn btn-primary ms-2 "
+          class="btn btn-primary ms-2"
         >
           Crear capitulo
         </button>
-
-
       </form>
     </div>
-s
-
   </div>
 
-</header>
+  <section class="bg-dark mt-2">
+    <h1 class="text-white text-center mt-5">Comentarios :</h1>
+    <div *ngIf="!comentarios[0]" class="text-center font-weight-bold text-decoration-underline">Aun no hay comentarios</div>
+    <div class="container my-5 py-5" *ngIf="comentarios[0]">
 
+
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-12 col-lg-10 col-xl-8">
+          <div class="card">
+            <div
+              class="card-body border border-secondary rounded"
+              *ngFor="let comentario of comentarios"
+            >
+              <div class="d-flex flex-start align-items-center">
+
+                <div>
+                  <img
+                    class="rounded-circle shadow-1-strong me-3"
+                    src="http://localhost:8080/comentarios/imagen/{{
+                      comentario.usuario?.imagen
+                    }}"
+                    alt="avatar"
+                    width="60"
+                    height="60"
+                    [routerLink]="['/users/' + comentario.usuario?.id]"
+                    style="cursor: pointer"
+                  />
+                </div>
+
+                <div>
+                  <h6
+                    class="fw-bold text-primary mb-1"
+                    [routerLink]="['/users/' + comentario.usuario?.id]"
+                    style="cursor: pointer"
+                  >
+                    {{ comentario.usuario?.nombre }}
+                  </h6>
+                  <p class="text-muted small mb-0">
+                    Fecha : {{ comentario.fecha | date : "d/M/yy, h:mm a" }}
+                  </p>
+                </div>
+              </div>
+
+              <p class="mt-2 mb-2 pb-2 text-dark font-weight-bold">
+                {{ comentario.comentario }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <form
+      action="#"
+      #ComentarioForm="ngForm"
+      id="form-register"
+      class="mt-4"
+      method="POST"
+      (ngSubmit)="subirComentario()"
+      role="form"
+    >
+      <div class="card-footer py-3 border-0" style="background-color: #f8f9fa">
+        <h2 class="text-black text-center text-decoration-underline">
+          Comentar
+        </h2>
+        <div class="d-flex flex-start w-100">
+          <div class="form-outline w-100">
+            <textarea
+              type="text"
+              [(ngModel)]="comentario.comentario"
+              #comentarioModel="ngModel"
+              class="form-control"
+              id="comentario"
+              name="comentario"
+              placeholder="Comentar"
+              [ngClass]="
+                validClasses(comentarioModel, 'is-valid', 'is-invalid')
+              "
+              required
+            ></textarea>
+          </div>
+        </div>
+        <div class="float-end mt-2 pt-1">
+          <button type="submit" class="btn btn-primary btn-sm">Comentar</button>
+        </div>
+      </div>
+    </form>
+  </section>
+</header>

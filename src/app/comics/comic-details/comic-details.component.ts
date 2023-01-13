@@ -6,6 +6,8 @@ import { NgForm, NgModel } from '@angular/forms';
 import { CapitulosService } from '../../servicios/capitulos/capitulos.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ApiService } from '../../servicios/api/api.service';
+import { Comentarios } from '../comentariosInterface/comentarios';
+import { ComicServicesService } from '../../servicios/comicServices/comic-services.service';
 
 @Component({
   selector: 'app-comic-details',
@@ -14,14 +16,20 @@ import { ApiService } from '../../servicios/api/api.service';
 })
 export class ComicDetailsComponent implements OnInit {
   @ViewChild('CapituloForm') CapituloForm!: NgForm;
-
+  @ViewChild('ComentarioForm') ComentarioForm!: NgForm;
   comic!: comics;
+  comentarios!:Comentarios[];
+  comentario!:Comentarios;
   capitulos: capitulos[] = [];
   capitulo!: capitulos;
-
   admin!: boolean;
+
+
+
+  user!: any;
   constructor(
     private readonly capitulosService: CapitulosService,
+    private comicServicesService: ComicServicesService,
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private sanitizer: DomSanitizer,
@@ -29,8 +37,11 @@ export class ComicDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.apiService.admin$.subscribe((e) => (this.admin = e));
+    this.apiService.admin$.subscribe(e=> (this.admin = e));
+    this.user = localStorage.getItem("user");
     this.comic = this.route.snapshot.data['comic'];
+    this.comentarios = this.route.snapshot.data['comentarios'];
+    console.log(this.comentarios);
     this.comic.portada = 'data:image/png;base64, ' + this.comic.portada;
     this.resetForm();
 
@@ -39,6 +50,9 @@ export class ComicDetailsComponent implements OnInit {
 
       error: (error) => console.error(error),
     });
+
+    console.log(this.user);
+
   }
 
   resetForm(): void {
@@ -47,7 +61,13 @@ export class ComicDetailsComponent implements OnInit {
       imagenes: '',
       id_comic: this.comic.id,
     };
+    this.comentario = {
+      comentario: '',
+      id_comic: this.comic.id,
+      id_usuario: this.user,
+    };
   }
+
 
   redirectTo(uri:string){
     this.router.navigateByUrl('/comics/cargarPagina', {skipLocationChange: true}).then(()=>
@@ -56,6 +76,16 @@ export class ComicDetailsComponent implements OnInit {
 
   subirCapitulos(): void {
     this.capitulosService.subirCapitulos(this.capitulo).subscribe({
+      next: () => {
+        this.redirectTo('/comics/'+ this.capitulo.id_comic );
+      },
+      error: (error) => console.error(error),
+    });
+  }
+
+
+  subirComentario(): void {
+    this.comicServicesService.createComentario(this.comentario).subscribe({
       next: () => {
         this.redirectTo('/comics/'+ this.capitulo.id_comic );
       },

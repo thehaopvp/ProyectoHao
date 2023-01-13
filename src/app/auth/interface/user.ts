@@ -12,10 +12,11 @@ export interface UserLogin {
 }
 
 export interface regiUser {
+  id?:number;
   nombre: string;
   password: string;
   imagen: string;
-  role: string;
+  role?: string;
 }
 
 export interface Response {

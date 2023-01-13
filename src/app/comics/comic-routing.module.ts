@@ -9,6 +9,7 @@ import { ComicDetailsComponent } from './comic-details/comic-details.component';
 import { CapituloDetailsComponent } from './capitulo-details/capitulo-details.component';
 import { CapitulosResolver } from './resolver/capitulos.resolver';
 import { CargarPaginaComponent } from './cargar-pagina/cargar-pagina.component';
+import { ComentariosResolver } from './resolver/comentarios.resolver';
 
 
 
@@ -34,6 +35,7 @@ const routes: Routes = [
     component: ComicDetailsComponent,
     resolve: {
       comic: ComicResolver,
+      comentarios : ComentariosResolver
     },
   },
   {

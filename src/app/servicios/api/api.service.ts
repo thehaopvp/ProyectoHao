@@ -41,7 +41,7 @@ export class ApiService {
   }
 
   changeUser(User: User): Observable<void> {
-    return this.http.put<void>(`user`, User);
+    return this.http.put<void>(`user/`+ User.id, User);
   }
 
   checktoken(): Observable<void> {
@@ -49,12 +49,12 @@ export class ApiService {
   }
 
   checkAdmin(): void {
-     this.http.get<any>(`user/admin`).subscribe({
-      next:  admin => this.admin$.next(admin.admin),
-      error: admin => console.error(admin),
+    this.http.get<any>(`user/admin`).subscribe({
+      next: (admin) => {(this.admin$.next(admin.admin),localStorage.setItem('user', admin.user) )},
+
+      error: (admin) => console.error(admin),
     });
   }
-
 
   logout(): void {
     localStorage.removeItem('token');
